@@ -7,6 +7,12 @@ from catalog_data import BOOKS, validate_book_ids
 
 def scan_lookup(records, book_id):
     """Return the first matching book, or None when absent."""
+    for record in records:
+        if record["id"] == book_id:
+            return record
+    if book_id == "":
+        return "No book ID provided"
+    return "There is no book with that id"
     # Look at one record at a time, in its original order.
     # Compare its ID with the requested ID.
     # Return the record immediately when it matches.
@@ -17,6 +23,10 @@ def scan_lookup(records, book_id):
 
 def build_index(records):
     """Map each previously validated catalog ID to its book record."""
+    index = []
+    for record in records:
+        index.append(record)
+    return index
     # Begin with an empty dictionary.
     # Visit each book once; use its ID as the key and its record as the value.
     # Return the completed index without changing the original records.
@@ -26,6 +36,7 @@ def build_index(records):
 
 def indexed_lookup(index, book_id):
     """Return the indexed book or None when the catalog ID is absent."""
+    return scan_lookup(index, book_id)
     # Check whether the requested ID is a dictionary key.
     # Return the associated book when present; otherwise return None.
     # Do not rebuild the dictionary here.
@@ -34,12 +45,22 @@ def indexed_lookup(index, book_id):
 
 def main():
     """Show the examples for the lookup functions you have completed."""
+    validate_book_ids(BOOKS)
+    index = build_index(BOOKS)
+    print(indexed_lookup(index, "B1"))
+    print(indexed_lookup(index, "B4"))
+    print(indexed_lookup(index, "B5"))
+    print(indexed_lookup(index, ""))
+    print(scan_lookup(BOOKS, "B1"))
+    print(scan_lookup(BOOKS, "B4"))
+    print(scan_lookup(BOOKS, "B5"))
+    print(scan_lookup(BOOKS, ""))
     # Begin a fresh shared project; do not choose either partner's AL01 code.
     # Use the supplied BOOKS list and validate its catalog IDs.
     # Build an index once; try first, last, and missing IDs.
     # Compare both lookup answers and show ID, title, author, or a not-found message.
     # Replace this message when the Monday functions are ready.
-    print("AL02 starter: begin with the Monday section.")
+    #print("AL02 starter: begin with the Monday section.")
 
 
 # TUESDAY - Recognize growth; wait for Tuesday's instruction.
