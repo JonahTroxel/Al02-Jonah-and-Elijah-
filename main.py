@@ -55,7 +55,7 @@ def main():
     print(scan_lookup(BOOKS, "B4"))
     print(scan_lookup(BOOKS, "B5"))
     print(scan_lookup(BOOKS, ""))
-    # Begin a fresh shared project; do not choose either partner's AL01 code.
+    
     # Use the supplied BOOKS list and validate its catalog IDs.
     # Build an index once; try first, last, and missing IDs.
     # Compare both lookup answers and show ID, title, author, or a not-found message.
