@@ -36,6 +36,10 @@ def build_index(records):
 
 def indexed_lookup(index, book_id):
     """Return the indexed book or None when the catalog ID is absent."""
+    if book_id == "":
+        return "No book ID provided"
+    if book_id not in index:
+        return "There is no book with that id"
     return index.get(book_id)
     # Check whether the requested ID is a dictionary key.
     # Return the associated book when present; otherwise return None.
