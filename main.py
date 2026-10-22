@@ -23,9 +23,9 @@ def scan_lookup(records, book_id):
 
 def build_index(records):
     """Map each previously validated catalog ID to its book record."""
-    index = []
+    index = {}
     for record in records:
-        index.append(record)
+        index[record["id"]] = record
     return index
     # Begin with an empty dictionary.
     # Visit each book once; use its ID as the key and its record as the value.
@@ -36,7 +36,7 @@ def build_index(records):
 
 def indexed_lookup(index, book_id):
     """Return the indexed book or None when the catalog ID is absent."""
-    return scan_lookup(index, book_id)
+    return index.get(book_id)
     # Check whether the requested ID is a dictionary key.
     # Return the associated book when present; otherwise return None.
     # Do not rebuild the dictionary here.
